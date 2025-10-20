@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Category } from "../SurveyModal";
-import { Slider } from "@/components/ui/slider";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 const questions = {
   zipline: {
@@ -48,22 +48,27 @@ export const QuestionStep = ({ category, onSubmit }: { category: Category; onSub
 
       {question.type === "scale" ? (
         <div className="space-y-6 py-4">
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-6">
             <div className="text-6xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
               {scaleValue[0]}
             </div>
           </div>
-          <Slider
-            value={scaleValue}
-            onValueChange={setScaleValue}
-            max={10}
-            step={1}
-            className="w-full"
-          />
-          <div className="flex justify-between text-sm text-muted-foreground px-1">
-            <span>0</span>
-            <span>5</span>
-            <span>10</span>
+          <div className="grid grid-cols-6 gap-2 sm:gap-3">
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+              <button
+                key={num}
+                onClick={() => setScaleValue([num])}
+                className={cn(
+                  "aspect-square rounded-lg font-bold text-lg transition-all duration-200",
+                  "border-2 hover:scale-105 active:scale-95",
+                  scaleValue[0] === num
+                    ? "bg-gradient-to-br from-primary to-secondary text-primary-foreground border-transparent shadow-lg"
+                    : "bg-card border-border text-foreground hover:border-primary/50"
+                )}
+              >
+                {num}
+              </button>
+            ))}
           </div>
         </div>
       ) : (
