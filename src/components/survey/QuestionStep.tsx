@@ -53,8 +53,8 @@ export const QuestionStep = ({ category, onSubmit }: { category: Category; onSub
               {scaleValue[0]}
             </div>
           </div>
-          <div className="grid grid-cols-6 gap-2 sm:gap-3">
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+          <div className="grid grid-cols-5 gap-2 sm:gap-3">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
               <button
                 key={num}
                 onClick={() => setScaleValue([num])}
