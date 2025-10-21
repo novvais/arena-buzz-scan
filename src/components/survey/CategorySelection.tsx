@@ -1,4 +1,4 @@
-import { Trophy, Zap, Wifi, Gamepad2 } from "lucide-react";
+import { Trophy, Zap, Gamepad2 } from "lucide-react";
 import { Category } from "../SurveyModal";
 
 const categories = [
@@ -13,12 +13,6 @@ const categories = [
     icon: Zap,
     title: "Tirolesa",
     color: "from-primary to-purple-500",
-  },
-  {
-    id: "wifi" as Category,
-    icon: Wifi,
-    title: "Wi-Fi",
-    color: "from-blue-500 to-cyan-500",
   },
   {
     id: "play" as Category,

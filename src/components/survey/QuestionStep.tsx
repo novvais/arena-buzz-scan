@@ -19,10 +19,6 @@ const questions = {
       { id: "dont-know", label: "Não sei" },
     ],
   },
-  wifi: {
-    text: "Em uma escala de 0 a 10, qual é a sua expectativa para a experiência na Arena BRB hoje?",
-    type: "scale" as const,
-  },
   play: {
     text: "Em uma escala de 0 a 10, o quão alta está sua 'Vibe' para o evento de hoje?",
     type: "scale" as const,

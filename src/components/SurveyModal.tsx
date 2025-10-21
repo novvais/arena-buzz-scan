@@ -6,7 +6,7 @@ import { QuestionStep } from "./survey/QuestionStep";
 import { CompletionStep } from "./survey/CompletionStep";
 import { StepIndicator } from "./survey/StepIndicator";
 
-export type Category = "pool" | "zipline" | "wifi" | "play";
+export type Category = "pool" | "zipline" | "play";
 
 interface PersonalInfo {
   name: string;
