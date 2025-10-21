@@ -6,19 +6,19 @@ const categories = [
     id: "pool" as Category,
     icon: Trophy,
     title: "Piscina de Prêmios",
-    color: "from-accent to-orange-500",
+    color: "from-primary to-primary-glow",
   },
   {
     id: "zipline" as Category,
     icon: Zap,
     title: "Tirolesa",
-    color: "from-primary to-purple-500",
+    color: "from-secondary to-primary",
   },
   {
     id: "play" as Category,
     icon: Gamepad2,
     title: "Arena Play",
-    color: "from-secondary to-pink-500",
+    color: "from-accent to-primary",
   },
 ];
 
@@ -30,20 +30,20 @@ export const CategorySelection = ({ onSelect }: { onSelect: (category: Category)
         <p className="text-muted-foreground">Selecione a atividade que você participou</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-6">
+      <div className="flex flex-col gap-4 mt-6 max-w-md mx-auto">
         {categories.map((category) => {
           const Icon = category.icon;
           return (
             <button
               key={category.id}
               onClick={() => onSelect(category.id)}
-              className="group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl bg-card border-2 border-border hover:border-primary"
+              className="group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-card border-2 border-border hover:border-primary"
             >
-              <div className="relative z-10 flex flex-col items-center gap-3">
+              <div className="relative z-10 flex items-center gap-4">
                 <div className={`p-4 rounded-xl bg-gradient-to-br ${category.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <Icon className="h-8 w-8 text-white" />
                 </div>
-                <span className="font-semibold text-center text-foreground group-hover:text-primary transition-colors">
+                <span className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
                   {category.title}
                 </span>
               </div>
