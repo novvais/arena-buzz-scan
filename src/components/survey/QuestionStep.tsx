@@ -29,21 +29,33 @@ const questions = {
   },
 };
 
-export const QuestionStep = ({ category, onSubmit }: { category: Category; onSubmit: () => void }) => {
+export const QuestionStep = ({
+  category,
+  onSubmit,
+  isSubmitting = false,
+}: {
+  category: Category;
+  onSubmit: (answer: string) => void;
+  isSubmitting?: boolean;
+}) => {
   const question = questions[category];
   const [scaleValue, setScaleValue] = useState([5]);
   const [selectedChoice, setSelectedChoice] = useState("");
 
   const handleSubmit = () => {
-    if (question.type === "scale" || (question.type === "choice" && selectedChoice)) {
-      onSubmit();
+    if (question.type === "scale") {
+      onSubmit(scaleValue[0].toString());
+    } else if (question.type === "choice" && selectedChoice) {
+      onSubmit(selectedChoice);
     }
   };
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="text-center space-y-3">
-        <h2 className="text-2xl font-bold text-foreground leading-tight">{question.text}</h2>
+        <h2 className="text-2xl font-bold text-foreground leading-tight">
+          {question.text}
+        </h2>
       </div>
 
       {question.type === "scale" ? (
@@ -72,7 +84,11 @@ export const QuestionStep = ({ category, onSubmit }: { category: Category; onSub
           </div>
         </div>
       ) : (
-        <RadioGroup value={selectedChoice} onValueChange={setSelectedChoice} className="space-y-3">
+        <RadioGroup
+          value={selectedChoice}
+          onValueChange={setSelectedChoice}
+          className="space-y-3"
+        >
           {question.options?.map((option) => (
             <div
               key={option.id}
@@ -80,7 +96,10 @@ export const QuestionStep = ({ category, onSubmit }: { category: Category; onSub
               onClick={() => setSelectedChoice(option.id)}
             >
               <RadioGroupItem value={option.id} id={option.id} />
-              <Label htmlFor={option.id} className="flex-1 cursor-pointer text-foreground font-medium">
+              <Label
+                htmlFor={option.id}
+                className="flex-1 cursor-pointer text-foreground font-medium"
+              >
                 {option.label}
               </Label>
             </div>
@@ -90,10 +109,12 @@ export const QuestionStep = ({ category, onSubmit }: { category: Category; onSub
 
       <Button
         onClick={handleSubmit}
-        disabled={question.type === "choice" && !selectedChoice}
+        disabled={
+          (question.type === "choice" && !selectedChoice) || isSubmitting
+        }
         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg"
       >
-        Enviar Resposta
+        {isSubmitting ? "Enviando..." : "Enviar Resposta"}
       </Button>
     </div>
   );
