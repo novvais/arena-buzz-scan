@@ -8,7 +8,7 @@ import { StepIndicator } from "./survey/StepIndicator";
 import { api } from "@/services/api";
 import { toast } from "sonner";
 
-export type Category = "pool" | "zipline" | "wifi" | "play";
+export type Category = "pool" | "zipline" | "play";
 
 interface PersonalInfo {
   name: string;
